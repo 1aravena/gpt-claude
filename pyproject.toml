@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gpt-claude"
-version = "0.1.0"
+version = "0.2.0"
 description = "Run Claude Code with GPT through an on-demand local LiteLLM gateway"
 readme = "README.md"
 requires-python = ">=3.14,<3.15"

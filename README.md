@@ -15,6 +15,11 @@ el proxy arranca al abrir la primera sesión y se apaga al cerrar la última.
 Proyecto independiente, sin afiliación con OpenAI ni Anthropic. Claude Code
 se instala por separado; este repo distribuye el launcher y su adaptador.
 
+| Plataforma | Instalador |
+|---|---|
+| Mac (Intel y Apple Silicon) / Linux | [`install.sh`](install.sh) |
+| Windows 10/11 con WSL2 | [`install-windows.ps1`](install-windows.ps1), [guía de Windows](docs/windows.md) |
+
 ## Requisitos
 
 - **macOS o Linux**. En Windows, usa **WSL2** e instala todo dentro de WSL.
@@ -29,7 +34,7 @@ se instala por separado; este repo distribuye el launcher y su adaptador.
 El instalador usa Python **3.14**, descargado por uv si hace falta,
 LiteLLM **1.105.0** y las versiones fijadas en `requirements.lock`.
 
-## Instalación
+## Instalación en Mac / Linux
 
 ```sh
 git clone https://github.com/1aravena/gpt-claude.git
@@ -50,6 +55,33 @@ antes de reintentar. Nunca compartas el código de autorización.
 
 Si el shell no encuentra los comandos, ejecuta `uv tool update-shell`
 y abre otra terminal.
+
+## Instalación en Windows
+
+La versión de Windows ejecuta Claude Code y el proxy dentro de **WSL2**.
+Primero instala Ubuntu desde PowerShell como administrador:
+
+```powershell
+wsl --install -d Ubuntu
+```
+
+Reinicia si Windows lo solicita, abre Ubuntu y crea tu usuario Linux.
+Después, desde PowerShell normal:
+
+```powershell
+Invoke-WebRequest https://raw.githubusercontent.com/1aravena/gpt-claude/main/install-windows.ps1 -OutFile install-windows.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File .\install-windows.ps1
+```
+
+El instalador comprueba WSL2, prepara Git/curl si faltan, instala uv y
+Claude Code dentro de Linux y ejecuta el instalador compartido. Luego
+abre una terminal Ubuntu y ejecuta `gpt-claude-service login` y
+`gpt-claude`. Puedes elegir otra distro Ubuntu con
+`-Distribution Ubuntu-24.04`.
+
+La [guía de Windows](docs/windows.md) incluye la primera prueba y los
+comandos de diagnóstico. Mac y WSL mantienen sus propios datos y
+configuración. El instalador no reinicia Windows ni convierte distros.
 
 ## Uso
 
@@ -169,7 +201,10 @@ Las pruebas del adaptador simulan el servidor remoto. La prueba de
 ciclo de vida abre un proxy real en localhost con un Claude simulado y
 credenciales ficticias: verifica sesiones simultáneas, cierre de la
 última sesión y limpieza al matar el launcher, sin llamadas a GPT.
-Usa un puerto efímero aislado. CI ejecuta estas pruebas en macOS y Linux.
+Usa un puerto efímero aislado. CI ejecuta estas pruebas en macOS y Linux,
+y verifica el instalador con PowerShell 5.1 y 7 en un runner Windows
+usando WSL simulado. La prueba en una máquina Windows con WSL2 real y
+login ChatGPT se realiza con la [guía de Windows](docs/windows.md).
 
 ## Licencia
 

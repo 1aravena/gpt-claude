@@ -28,4 +28,17 @@ jobs:
       - name: Real local proxy lifecycle (no GPT calls)
         run: .venv/bin/python tests/check_lifecycle.py
       - name: Check installer syntax
-        run: sh -n install.sh
+        run: |
+          sh -n install.sh
+          bash -n install-wsl.sh
+
+  windows-installer:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Windows PowerShell 5.1 installer checks (mocked WSL)
+        shell: powershell
+        run: ./tests/check_windows_installer.ps1
+      - name: PowerShell 7 installer checks (mocked WSL)
+        shell: pwsh
+        run: ./tests/check_windows_installer.ps1

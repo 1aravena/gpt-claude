@@ -16,6 +16,6 @@ command -v claude >/dev/null 2>&1 || {
 }
 
 repo_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
-uv tool install --python 3.14 --constraints "$repo_dir/requirements.lock" "$repo_dir"
+uv tool install --reinstall --python 3.14 --constraints "$repo_dir/requirements.lock" "$repo_dir"
 echo "Instalado. Abre una terminal nueva y ejecuta: gpt-claude-service login"
 echo "Si no encuentras el comando, ejecuta: uv tool update-shell"
