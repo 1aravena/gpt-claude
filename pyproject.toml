@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gpt-claude"
+version = "0.1.0"
+description = "Run Claude Code with GPT through an on-demand local LiteLLM gateway"
+readme = "README.md"
+requires-python = ">=3.14,<3.15"
+license = "MIT"
+authors = [{name = "1aravena"}]
+dependencies = ["litellm[proxy]==1.105.0"]
+
+[project.urls]
+Repository = "https://github.com/1aravena/gpt-claude"
+Issues = "https://github.com/1aravena/gpt-claude/issues"
+
+[project.scripts]
+gpt-claude = "gpt_claude.launcher:claude_main"
+gpt-claude-service = "gpt_claude.launcher:service_main"
+
+[tool.setuptools.package-data]
+gpt_claude = ["config.yaml", "claude-settings.json"]

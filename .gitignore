@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+build/
+dist/
+.env
+.env.*
+auth/
+auth*.json
+*.key
+*.pid
+*.lock
+!requirements.lock
+logs/
+*.log*
+.DS_Store

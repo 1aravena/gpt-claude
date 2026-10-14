@@ -1,0 +1,47 @@
+model_list:
+  - model_name: gpt-sol
+    litellm_params:
+      model: chatgpt/gpt-6.1-sol
+      reasoning_effort: xhigh
+      drop_params: true
+    model_info:
+      mode: responses
+      litellm_provider: chatgpt
+      supports_function_calling: true
+      supports_reasoning: true
+      supports_none_reasoning_effort: false
+      supports_minimal_reasoning_effort: false
+      supports_xhigh_reasoning_effort: true
+      supports_max_reasoning_effort: true
+      reasoning_effort_levels: [low, medium, high, xhigh, max]
+      max_input_tokens: 922000
+      max_output_tokens: 128000
+      disable_background_health_check: true
+  - model_name: gpt-astra
+    litellm_params:
+      model: chatgpt/gpt-6-astra
+      reasoning_effort: xhigh
+      drop_params: true
+    model_info:
+      mode: responses
+      litellm_provider: chatgpt
+      supports_function_calling: true
+      supports_reasoning: true
+      supports_none_reasoning_effort: false
+      supports_minimal_reasoning_effort: false
+      supports_xhigh_reasoning_effort: true
+      supports_max_reasoning_effort: true
+      reasoning_effort_levels: [low, medium, high, xhigh, max]
+      max_input_tokens: 922000
+      max_output_tokens: 128000
+      disable_background_health_check: true
+general_settings:
+  master_key: os.environ/LITELLM_MASTER_KEY
+  background_health_checks: false
+litellm_settings:
+  set_verbose: false
+  turn_off_message_logging: true
+  drop_params: true
+router_settings:
+  num_retries: 0
+  disable_cooldowns: true

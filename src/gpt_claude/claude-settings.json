@@ -1,0 +1,12 @@
+{
+  "modelPicker": {
+    "replaceBuiltInOptions": true,
+    "options": [
+      {"model": "sonnet", "label": "GPT-6.1 Sol"},
+      {"model": "opus", "label": "GPT-6 Astra"}
+    ]
+  },
+  "effortLevel": "xhigh",
+  "remoteControlAtStartup": false,
+  "fallbackModel": []
+}
