@@ -77,3 +77,5 @@ finally {
     Remove-Item Function:\wsl.exe
     Remove-Variable WslMock -Scope Global
 }
+# Expected native failures must not become the CI process exit code.
+$global:LASTEXITCODE = 0
